@@ -1,1 +1,30 @@
-<p>table works!</p>
+<table>
+  <thead>
+    <tr>
+      <ng-container *ngIf="headers; else defaultHeaders">
+        <th *ngFor="let header of headers">
+          {{ header }}
+        </th>
+      </ng-container>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of data">
+      <ng-container *ngFor="let row of row | keyvalue">
+        <td *ngIf="rowVisible(row.key)">
+          {{ row.value }}
+        </td>
+      </ng-container>
+
+      <td *ngIf="actionButtonFn && actionButtonFn(row)">
+        <button (click)="actionClicked.emit(row)">
+          {{ actionButtonFn(row) }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #defaultHeaders>
+  <th *ngFor="let header of data[0] | keyvalue">{{ header.key }}</th>
+</ng-template>

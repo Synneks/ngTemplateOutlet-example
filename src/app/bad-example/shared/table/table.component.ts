@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  styleUrls: ['./table.component.css'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
+  @Input() headers: string[] | undefined;
+  @Input() data!: any[];
+  @Input() hideRows: string[] = [];
+  @Input() actionButtonFn: Function | undefined;
 
-  constructor() { }
+  @Output() actionClicked = new EventEmitter();
 
-  ngOnInit(): void {
+  rowVisible(key: unknown) {
+    return !this.hideRows.includes(key as string);
   }
-
 }

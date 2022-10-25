@@ -1,1 +1,16 @@
-<p>home works!</p>
+<!-- IMPORTANT: This is a bad example to demonstrate why *ngTemplateOutlet is a better option -->
+
+<!-- No templates provided, will use default layout -->
+<app-table [data]="employees"></app-table>
+
+<!-- Basic configured template -->
+<app-table [data]="employees" [headers]="['First', 'Last']"></app-table>
+
+<!-- Highly configured template with conditional elements -->
+<app-table
+  [data]="inventory"
+  [headers]="['Item', 'Price', '']"
+  [hideRows]="['plu', 'supplier', 'inStock', 'currency']"
+  [actionButtonFn]="actionButtonFn"
+  (actionClicked)="purchaseItem($event)"
+></app-table>
