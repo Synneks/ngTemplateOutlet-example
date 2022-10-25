@@ -1,11 +1,9 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [CurrencyPipe],
 })
 export class HomeComponent {
   employees = [
@@ -41,16 +39,9 @@ export class HomeComponent {
       price: 8000,
       currency: 'AUD',
     },
-  ].map((item) => ({
-    ...item,
-    price: this.currencyPipe.transform(item.price, item.currency),
-  }));
+  ];
 
-  actionButtonFn = (row: any) => (row.inStock > 0 ? 'Buy now' : null);
-
-  constructor(private currencyPipe: CurrencyPipe) {}
-
-  purchaseItem(item: any) {
-    console.log('handle purchase for', item.plu);
+  purchaseItem(plu: number) {
+    console.log('handle purchase for', plu);
   }
 }

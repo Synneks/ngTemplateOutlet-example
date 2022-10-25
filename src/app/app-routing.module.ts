@@ -9,6 +9,13 @@ const routes: Routes = [
         (m) => m.BadExampleModule
       ),
   },
+  {
+    path: 'good',
+    loadChildren: () =>
+      import('./good-example/good-example.module').then(
+        (m) => m.GoodExampleModule
+      ),
+  },
 ];
 
 @NgModule({
